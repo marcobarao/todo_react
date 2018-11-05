@@ -6,5 +6,6 @@ export const Card = styled.div`
   height: 80vh;
   border-radius: 20px;
   padding: 30px;
+  overflow-y: auto;
   background-color: var(--color-zero-dark);
 `;

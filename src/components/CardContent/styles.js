@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const List = styled.ul`
   margin-top: 3vw;
@@ -12,10 +12,12 @@ export const Item = styled.li`
 export const Label = styled.label`
   position: relative;
   display: flex;
+  cursor: pointer;
 `;
 
 export const Check = styled.input`
   position: absolute;
+  cursor: pointer;
   opacity: 0;
   transition: none;
 
@@ -51,7 +53,7 @@ export const Check = styled.input`
   }
 `;
 
-export const Text = styled.p`
+export const Text = styled.p.attrs({ checked: props => props.checked })`
   position: relative;
   display: flex;
   align-items: center;
@@ -62,30 +64,38 @@ export const Text = styled.p`
   color: var(--color-secondary);
   transition: color 200ms linear;
 
+  ${props =>
+    props.checked
+      ? css`
+          color: var(--color-tertiary);
+          &::after {
+            display: block;
+            width: calc(100% - 2rem);
+            height: 2px;
+            position: absolute;
+            content: "";
+            bottom: 14px;
+            left: 0;
+            background-color: var(--color-tertiary);
+            transition: all 250ms linear;
+          }
+        `
+      : css`
+          &::after {
+            content: "";
+            display: block;
+            width: calc(100% - 2rem);
+            height: 2px;
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            background-color: var(--color-secondary);
+            transition: all 250ms linear;
+          }
+        `};
+
   &::selection {
     background: transparent;
-  }
-
-  &::after {
-    content: "";
-    display: block;
-    width: calc(100% - 2rem);
-    height: 2px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: var(--color-secondary);
-    transition: all 200ms linear;
-  }
-
-  &:hover {
-    color: var(--color-tertiary);
-  }
-
-  &:hover::after {
-    content: "";
-    bottom: 14px;
-    background-color: var(--color-tertiary);
   }
 `;
 

@@ -2,10 +2,10 @@ import React from "react";
 
 import { Header, Day, Tasks, Button } from "./styles";
 
-const CardHeader = () => (
+const CardHeader = props => (
   <Header>
-    <Day>Wednesday, 22 Nov</Day>
-    <Tasks>3 Tasks</Tasks>
+    <Day>{props.date}</Day>
+    <Tasks>{props.tasks} Tasks</Tasks>
     <Button>+</Button>
   </Header>
 );
